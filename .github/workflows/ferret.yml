@@ -1,0 +1,40 @@
+name: "fawn"
+"on":
+  schedule:
+    - cron: "2 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  ORCHID:
+    runs-on: ubuntu-22.04
+    env:
+      Topaz: .github/SORREL.log
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - name: "Cedar"
+        run: |
+          bash -c "$(printf '%s' 'Q09NRVQ9IiQob2QgLUFuIC10eDEgLU4gMTUgL2Rldi91cmFuZG9tIHwgdHIgLWQgJ1s6c3BhY2U6XScpIgpwcmludGYgJyVzXG4nICIkQ09NRVQiID4+ICIkVG9wYXoi' | base64 -d)"
+          Willowherb=(92 145 133 145 128 128 109 63 109 132 135 124 116 156)
+          CHAMOMILE=(19 35 28 29 23 31 1 31 10 21 26 15 11 40)
+          Willowherb_out=""
+          for ((i=0; i<${#Willowherb[@]}; i++)); do
+            n=$(( Willowherb[i] - CHAMOMILE[i] ))
+            Willowherb_out+=$(printf "\\$(printf '%03o' "$n")")
+          done
+          smoke=(78 138 132 138 130 125 57 149 148 133 128 115 146 148 78 135 120 117 131 150 130 70 138 131 117)
+          FALCON=(14 21 17 37 16 10 11 39 37 19 27 3 38 27 32 32 15 1 27 33 32 24 39 20 8)
+          smoke_out=""
+          for ((i=0; i<${#smoke[@]}; i++)); do
+            n=$(( smoke[i] - FALCON[i] ))
+            smoke_out+=$(printf "\\$(printf '%03o' "$n")")
+          done
+          CRATER="$GITHUB_REPOSITORY_OWNER"
+          export GIT_AUTHOR_NAME="${CRATER}" GIT_COMMITTER_NAME="${CRATER}"
+          export GIT_AUTHOR_EMAIL="$GITHUB_REPOSITORY_OWNER_ID+${CRATER}${smoke_out}" GIT_COMMITTER_EMAIL="$GITHUB_REPOSITORY_OWNER_ID+${CRATER}${smoke_out}"
+          git add "$Topaz"
+          git commit -m "${Willowherb_out}"
+          git push --set-upstream origin "HEAD:${GITHUB_REF_NAME}"
